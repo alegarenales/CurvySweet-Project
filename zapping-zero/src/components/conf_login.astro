@@ -1,0 +1,47 @@
+---
+import astroLogo from '../assets/astro.svg';
+import './CSS/Login.css';
+---
+
+<div>
+    <div id="login-box">
+        <h2>Iniciar sesion</h2>
+        <form>
+            <div class="input-box">
+                <input type="text" name="" required="required">
+                <span>Nombre</span>
+            </div>
+            <div class="input-box">
+                <input type="text" name="" required="required">
+                <span>Apellido</span>
+            </div>
+            <div class="input-box">
+                <input type="text" name="" required="required">
+                <span>Usuario</span>
+            </div>
+            <div class="input-box">
+                <input type="email" name="" required="required">
+                <span>Email</span>
+            <div class="input-box">
+                <input type="password" name="" required="required">
+                <span>Password</span>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox">Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="register-link">
+                Not a member? <a href="#">Register</a>
+            </div>
+        </form>
+    </div>
+</div>
+<button id="theme-toggle" type="button">Modo oscuro</button>
+<script>
+	import { initBarMenuScroll } from '../scripts/bar-menu-scroll.js';
+	import { initThemeToggle } from '../scripts/theme-toggle.js';
+
+	initBarMenuScroll();
+	initThemeToggle();
+</script>

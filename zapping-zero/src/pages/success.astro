@@ -1,0 +1,19 @@
+---
+const sessionId = Astro.url.searchParams.get("session_id");
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pago confirmado | CurvySweet</title>
+  </head>
+  <body>
+    <main>
+      <h1>Pago confirmado</h1>
+      <p>Tu compra fue procesada correctamente.</p>
+      {sessionId && <p>ID de sesion: <code>{sessionId}</code></p>}
+      <p><a href="/">Volver a la tienda</a></p>
+    </main>
+  </body>
+</html>

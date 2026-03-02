@@ -1,0 +1,117 @@
+---
+import './CSS/ShopSection.css';
+import { products } from '../lib/catalog';
+
+const comments = [
+    {
+        comment: 'Comentario destacado',
+        username: 'usaurio1',
+        comentario: 'comentario1',
+        photo: 'img',
+        likes: 'number'
+    },
+    {
+        comment: 'Comentario destacado',
+        username: 'usaurio2',
+        comentario: 'comentario2',
+        photo: 'img',
+        likes: 'number'
+    },
+    {
+        comment: 'Comentario destacado',
+        username: 'usaurio3',
+        comentario: 'comentario2',
+        photo: 'img',
+        likes: 'number'
+    }
+]
+---
+
+<section class="shop-section" id="shop">
+	<div class="shop-header">
+		<p class="shop-kicker">CurvySweet</p>
+		<h2>Tienda</h2>
+		<p class="shop-subtitle">Descubre nuestras piezas mas vendidas para realzar tu figura.</p>
+	</div>
+
+	<div class="shop-grid">
+		{
+			products.map((product) => (
+				<article class="product-card">
+					<span class="product-tag">{product.tag}</span>
+					<div class="product-image" aria-hidden="true"></div>
+					<h3>{product.name}</h3>
+					<p>{product.description}</p>
+					<div class="product-footer">
+						<strong>{product.displayPrice}</strong>
+						<button type="button" class="buy-button" data-product-id={product.id}>
+							Comprar ahora
+						</button>
+					</div>
+				</article>
+			))
+		}
+	</div>
+	<div class="checkout-legal">
+		<label for="legal-consent">
+			<input id="legal-consent" type="checkbox" />
+			<span>
+				Acepto los
+				<a href="/legal/terminos" target="_blank" rel="noopener noreferrer">Terminos</a>,
+				<a href="/legal/privacidad" target="_blank" rel="noopener noreferrer">Privacidad</a>
+				y
+				<a href="/legal/reembolsos" target="_blank" rel="noopener noreferrer">Reembolsos</a>.
+			</span>
+		</label>
+		<p id="checkout-error" class="checkout-error" role="alert" aria-live="polite"></p>
+	</div>
+</section>
+<section class="comments-section">
+    <section class="comments">
+        <div class="carrusel">
+            {
+                comments.map((c) => (
+                    <article class="comment-card">
+                        <span class="comment-photo">{c.photo}</span>
+                        <span class="comment-username">{c.username}</span>
+                        <span class="comment-likes">{c.likes}</span>
+                        <span class="comment-comment">{c.comment}</span>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+</section>
+<script type="module">
+  console.log("Script cargado");
+
+  const buttons = document.querySelectorAll(".buy-button");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", async (event) => {
+      const productId = button.dataset.productId;
+
+      console.log("Producto:", productId);
+
+      try {
+        const res = await fetch("/api/second_check", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ productId }),
+        });
+
+        const data = await res.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          console.error("No se recibió URL");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    });
+  });
+</script>
