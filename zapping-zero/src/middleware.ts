@@ -33,3 +33,12 @@
 
 //   return response;
 // };
+
+// src/middleware.ts
+import type { APIContext } from 'astro';
+
+// Dummy middleware: no hace nada
+export const onRequest = async (context: APIContext) => {
+  // Solo devolvemos la request tal cual (o no devolvemos nada si no queremos interceptar)
+  return new Response(''); // Devuelve un response vacío temporalmente
+};
