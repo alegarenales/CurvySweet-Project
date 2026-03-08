@@ -6,7 +6,8 @@ import cloudflare from '@astrojs/cloudflare';
 // https://astro.build/config
 export default defineConfig({
     output: 'server',
-    adapter:
+    adapter: cloudflare(),
+    site: 'https://curvysweet.com',
         // mode: 'standalone',
-        cloudflare(),
+        
 });
