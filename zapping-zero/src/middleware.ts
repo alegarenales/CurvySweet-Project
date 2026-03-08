@@ -35,10 +35,10 @@
 // };
 
 // src/middleware.ts
+// src/middleware.ts
 import type { APIContext } from 'astro';
 
-// Dummy middleware: no hace nada
-export const onRequest = async (context: APIContext) => {
-  // Solo devolvemos la request tal cual (o no devolvemos nada si no queremos interceptar)
-  return new Response(''); // Devuelve un response vacío temporalmente
+// Middleware que no hace nada, solo permite que Astro continúe
+export const onRequest = async (_context: APIContext) => {
+  // No hacemos return, Astro sigue con la renderización normal
 };
